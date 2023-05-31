@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    {% load django_bootstrap5 %}  
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <title>SQL Queries</title>
+  </head>
+  <body>
+    <a class="btn position-absolute top-0 start-0 sidebar-anchor" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+    <img src="{% static 'images/sidebar_icon.png' %}" class="sidebar-icon" alt="Sidebar">
+  </a>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Navigation</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="{% url 'main_view' %}" class="btn btn-hover">Go to Homepage</a>
+          </li>
+        <li class="list-group-item" aria-current="true">
+        <a href="{% url 'items_list' %}" class="btn btn-hover">View Items List</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'query' %}" class="btn btn-hover">Queries</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'add_jewelerypiece' %}" class="btn btn-hover">Add a JeweleryPiece Object</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'add_material' %}" class="btn btn-hover">Add a Material Object</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'add_order' %}" class="btn btn-hover">Add a Order Object</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'add_orderdetails' %}" class="btn btn-hover">Add a OrderDetails Object</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'add_client' %}" class="btn btn-hover">Add a Client Object</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'add_category' %}" class="btn btn-hover">Add a Category Object</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'fill_db' %}" class="btn btn-hover">Fill database</a>
+      </li>
+      <li class="list-group-item">
+        <a href="{% url 'clear_db' %}" class="btn btn-hover">Clear database</a>
+      </li>
+    </ul>
+  </div>
+
+    {% block content %}
+    <style>
+        body {
+            background-image: url('{% static 'images/er_model.png' %}');
+            background-size: cover;
+        }
+    </style>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,63 @@
+.main-container {
+    margin-top: 45px;
+}
+
+.navbar-icon {
+    border-radius: 50%;
+    width: auto;
+    max-height: 20px;
+    float: left;
+    padding-right: 5px;
+    
+}
+
+.pfp-icon {
+    border-radius: 50%;
+    width: 100px;
+    max-height: 100px;
+    cursor: pointer;
+    object-fit: cover
+}
+
+.navbar-links {
+    font-size: calc(1.375rem + 1vw);;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.content-container {
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 10px;
+}
+
+.iter-rows {
+    margin-top: 10px;
+}
+
+.labels {
+    float: left;
+}
+
+.edit-icon {
+    width: 20px;
+    max-height: 20px;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.sidebar-icon {
+    width: auto;
+    max-height: 30px;
+    object-fit: cover;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.sidebar-anchor {
+    margin-bottom: 100px;
+}

@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<div class="container" style="width: 75%;
+margin: auto;
+margin-top: 40px;">
+
+<form method="GET">
+    <h2>1. Повернути всі вироби, що належать до категорії {category}:</h2>
+    <input type="hidden" name="form1" value="yes">
+    <input type="text" name="value" placeholder="Category" required>
+    <button type="submit">Execute</button>
+</form>
+
+<form method="GET">
+    <h2>2. Повернути id замовлення, в яких є вироб, ціна якого перевищує {price}:</h2>
+    <input type="hidden" name="form2" value="yes">
+    <input type="number" name="value" placeholder="Price" required>
+    <button type="submit">Execute</button>
+</form>
+
+<form method="GET">
+    <h2>3. Повернути вироби, які є в замовленнях у кількості, що перевищує {quantity}:</h2>
+    <input type="hidden" name="form3" value="yes">
+    <input type="number" name="value" placeholder="Quantity" required>
+    <button type="submit">Execute</button>
+</form>
+
+<form method="GET">
+    <h2>4. Повернути всі категорії, що є в виробу заказа з id {order_id}:</h2>
+    <input type="hidden" name="form4" value="yes">
+    <input type="number" name="value" placeholder="Order id" required>
+    <button type="submit">Execute</button>
+</form>
+
+<form method="GET">
+    <h2>5. Повернути id замовлення, в яких є вироб з матеріалу {material}</h2>
+    <input type="hidden" name="form5" value="yes">
+    <input type="text" name="value" placeholder="Material name" required>
+    <button type="submit">Execute</button>
+</form>
+
+
+<form method="GET">
+    <h2>6. Знайти всі замовлення, в яких є вироби з такими ж і тільки тими категоріями, що й у виробу з
+        замовлення з id {order_id}:</h2>
+    <input type="hidden" name="form6" value="yes">
+    <input type="number" name="value" placeholder="Order id" required>
+    <button type="submit">Execute</button>
+</form>
+
+<form method="GET">
+    <h2>7. Повернути назви категорій, які повторюються в 
+        усіх виробах замовлень покупця {customer_name}</h2>
+    <input type="hidden" name="form7" value="yes">
+    <input type="text" name="value" placeholder="Customer id" required>
+    <button type="submit">Execute</button>
+</form>
+
+<form method="GET">
+    <h2>8. Знайти замовлення, в якому є вироб, що належить до усіх категорій</h2>
+    <input type="hidden" name="form8" value="yes">
+    <button type="submit">Execute</button>
+</form>
+
+<div class="show">
+    <h2>Result:</h2>
+    {% for result in results %}
+    <h2>{{ result }}</h2>
+    {% endfor %}
+</div>
+
+</div>
+
+{% endblock %}

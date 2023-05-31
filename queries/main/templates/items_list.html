@@ -1,0 +1,221 @@
+{% extends 'main.html' %}
+
+
+{% load static %}
+{% load django_bootstrap5 %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% block content %}
+
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          JeweleryPiece objects:
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class="container-text-left content-container">
+                <div class="row">
+                  <a href="{% url 'add_jewelerypiece' %}" class="btn btn-light btn-lg btn-hover">Add a JeweleryPiece object</a>       
+                </div>
+              
+                {% for j in jl %}
+
+                <div class="row iter-rows" style="border-top: 1px solid black;">
+                  <div class="col-11 align-items-center justify-content-center"><h4 class="labels">{{ j.name }}</h4></div>
+                  <div class="col-1 d-flex align-items-center justify-content-center">
+                    <img src="{% static 'images/edit_icon.png' %}" class="edit-icon" onclick='location.href="{{ j.get_absolute_url }}"'>
+                    <img src="{% static 'images/delete_item_icon.png' %}" class="edit-icon" onclick='location.href="{{ j.get_deletion_url }}"'>
+                  </div>
+                </div>
+                <div class="row iter-rows">
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Price: {{ j.price }}</h4></div>
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Materials: {{ j.material }}</h4></div>
+                </div>
+                <div class="row iter-rows">
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Maker Country: {{ j.maker_country }}</h4></div>
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Categories: 
+                        {% for c in j.categories.all %} {{ c.name }} {% if not forloop.last %},{% endif %} {% endfor %} 
+                    </h4></div>
+                </div>
+                {% endfor %}
+            </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Material objects:
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class="container-text-left content-container">
+                <div class="row">
+                  <a href="{% url 'add_material' %}" class="btn btn-light btn-lg btn-hover">Add a Material object</a>       
+                </div>
+              
+                {% for m in ml %}
+
+                <div class="row iter-rows" style="border-top: 1px solid black;">
+                  <div class="col-11 align-items-center justify-content-center"><h4 class="labels">{{ m.name }}</h4></div>
+                  <div class="col-1 d-flex align-items-center justify-content-center">
+                    <img src="{% static 'images/edit_icon.png' %}" class="edit-icon" onclick='location.href="{{ m.get_absolute_url }}"'>
+                    <img src="{% static 'images/delete_item_icon.png' %}" class="edit-icon" onclick='location.href="{{ m.get_deletion_url }}"'>
+                  </div>
+                </div>
+                <div class="row iter-rows">
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Quantity: {{ m.quantity }}</h4></div>
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Measurement unit: {{ m.measurement_unit }}</h4></div>
+                </div>
+                {% endfor %}
+        </div>        
+        </div>
+    </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Order objects:
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <div class="container-text-left content-container">
+                <div class="row">
+                  <a href="{% url 'add_order' %}" class="btn btn-light btn-lg btn-hover">Add an Order object</a>       
+                </div>
+              
+                {% for o in ol %}
+
+                <div class="row iter-rows" style="border-top: 1px solid black;">
+                  <div class="col-11 align-items-center justify-content-center"><h4 class="labels">Order id: {{ o.order_id }}</h4></div>
+                  <div class="col-1 d-flex align-items-center justify-content-center">
+                    <img src="{% static 'images/edit_icon.png' %}" class="edit-icon" onclick='location.href="{{ o.get_absolute_url }}"'>
+                    <img src="{% static 'images/delete_item_icon.png' %}" class="edit-icon" onclick='location.href="{{ o.get_deletion_url }}"'>
+                  </div>
+                </div>
+                <div class="row iter-rows">
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Clients: {{ o.client_id }}</h4></div>
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Date: {{ o.date }}</h4></div>
+                </div>
+                <div class="row iter-rows">
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Status: {{ o.status }}</h4></div>
+                </div>
+
+                {% endfor %}
+        </div>        
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            OrderDetails objects:
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="container-text-left content-container">
+                <div class="row">
+                  <a href="{% url 'add_orderdetails' %}" class="btn btn-light btn-lg btn-hover">Add an OrderDetails object</a>       
+                </div>
+              
+                {% for d in dl %}
+
+                <div class="row iter-rows" style="border-top: 1px solid black;">
+                  <div class="col-11 align-items-center justify-content-center"><h4 class="labels">Order id: {{ d.order_id.order_id }}</h4></div>
+                  <div class="col-1 d-flex align-items-center justify-content-center">
+                    <img src="{% static 'images/edit_icon.png' %}" class="edit-icon" onclick='location.href="{{ d.get_absolute_url }}"'>
+                    <img src="{% static 'images/delete_item_icon.png' %}" class="edit-icon" onclick='location.href="{{ m.get_deletion_url }}"'>
+                  </div>
+                </div>
+                <div class="row iter-rows">
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Jewelery Piece id: {{ d.piece_id }}</h4></div>
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Quantity: {{ d.quantity }}</h4></div>
+                </div>
+                <div class="row iter-rows">
+                    <div class="col align-items-center justify-content-center"><h4 class="labels">Price per unit: {{ d.price_per_unit }}</h4></div>
+                </div>
+                
+                {% endfor %}
+        </div>        
+        </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            Client objects:
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="container-text-left content-container">
+                    <div class="row">
+                      <a href="{% url 'add_client' %}" class="btn btn-light btn-lg btn-hover">Add a Client object</a>       
+                    </div>
+                  
+                    {% for c in cll %}
+    
+                    <div class="row iter-rows" style="border-top: 1px solid black;">
+                      <div class="col-11 align-items-center justify-content-center"><h4 class="labels">{{ c.name }}</h4></div>
+                      <div class="col-1 d-flex align-items-center justify-content-center">
+                        <img src="{% static 'images/edit_icon.png' %}" class="edit-icon" onclick='location.href="{{ c.get_absolute_url }}"'>
+                        <img src="{% static 'images/delete_item_icon.png' %}" class="edit-icon" onclick='location.href="{{ m.get_deletion_url }}"'>
+                      </div>
+                    </div>
+                    <div class="row iter-rows">
+                        <div class="col align-items-center justify-content-center"><h4 class="labels">Address: {{ c.address }}</h4></div>
+                        <div class="col align-items-center justify-content-center"><h4 class="labels">Email: {{ c.email }}</h4></div>
+                    </div>
+                    <div class="row iter-rows">
+                        <div class="col align-items-center justify-content-center"><h4 class="labels">Phone number: {{ c.phone_number }}</h4></div>
+                    </div>
+                    
+                    {% endfor %}
+            </div>        
+            </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSix">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            Category objects:
+          </button>
+        </h2>
+        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="container-text-left content-container">
+                    <div class="row">
+                      <a href="{% url 'add_category' %}" class="btn btn-light btn-lg btn-hover">Add a Category object</a>       
+                    </div>
+                  
+                    {% for c in cal %}
+    
+                    <div class="row iter-rows" style="border-top: 1px solid black;">
+                      <div class="col-11 align-items-center justify-content-center"><h4 class="labels">{{ c.name }}</h4></div>
+                      <div class="col-1 d-flex align-items-center justify-content-center">
+                        <img src="{% static 'images/edit_icon.png' %}" class="edit-icon" onclick='location.href="{{ c.get_absolute_url }}"'>
+                        <img src="{% static 'images/delete_item_icon.png' %}" class="edit-icon" onclick='location.href="{{ m.get_deletion_url }}"'>
+                      </div>
+                    </div>
+                    
+                    {% endfor %}
+            </div>        
+            </div>
+        </div>
+      </div>
+  </div>
+
+  <style>
+    .accordion {
+      width: 75%;
+      margin: auto;
+      margin-top: 75px;
+    }
+  </style>
+{% endblock %}
